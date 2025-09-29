@@ -6,10 +6,7 @@ import StatsCard from "@/components/marketing/stats-card"
 import TimelineTab from "@/components/marketing/timeline-tab"
 import TrafficSource from "@/components/marketing/traffic-source"
 import {
-  TrendingUp,
   Users,
-  MessageSquare,
-  User,
   Banknote,
   CircleDollarSign,
   Check,

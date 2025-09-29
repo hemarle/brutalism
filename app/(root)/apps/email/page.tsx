@@ -1,17 +1,16 @@
 import EmailList from '@/components/apps/email/email-list'
 import MobileEmailLayout from '@/components/apps/email/MobileEmailLayout'
 import Sidebar from '@/components/apps/email/sidebar'
-// import MobileEmailLayout from '@/components/apps/email/MobileEmailLayout'
-import React from 'react'
-
+import React,{ Suspense }  from 'react'
 function Email() {
   return (
     <>
       {/* Mobile Layout */}
       <div className="block md:hidden">
         <MobileEmailLayout>
+            <Suspense fallback={<div>Loading...</div>}>
           <EmailList/>
-        </MobileEmailLayout>
+           </Suspense> </MobileEmailLayout>
       </div>
 
       {/* Desktop Layout */}
@@ -20,7 +19,9 @@ function Email() {
           <Sidebar/>
         </div>
         <div className="flex-1 min-w-0">
+           <Suspense fallback={<div>Loading...</div>}>
           <EmailList/>
+           </Suspense>
         </div>
       </div>
     </>

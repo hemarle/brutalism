@@ -1,8 +1,6 @@
 "use client"
-import { Facebook } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
-// import { Progress } from '../ui/progress';
 function BudgetByPlatform() {
 
 
