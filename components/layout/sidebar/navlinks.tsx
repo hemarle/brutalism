@@ -86,10 +86,9 @@ function Navlinks() {
               <Button
                 variant={ ( pathname.includes(item.href ) ) ?"outline" :"ghost" }
                 className={cn(
-                  "w-full justify-start gap-3 h-10 ",
-                  item.active
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                  "w-full justify-start gap-3 h-10 cursor-pointer px-3 ",
+                  
+                    "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 )}
                 onClick={() => toggleExpanded(item.label)}
               >
@@ -123,7 +122,7 @@ function Navlinks() {
                     <Button
                       variant={ ( pathname.includes(subItem.href ) ) ?"outline" :"ghost" }
                      size="sm"
-                      className="  w-full justify-start h-8 px-3 pl-10 text-xs  text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                      className=" cursor-pointer w-full justify-start h-8 px-3 pl-10 text-xs  text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
                     >
                       {subItem.label}
                     </Button>

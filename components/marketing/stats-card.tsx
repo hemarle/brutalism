@@ -9,7 +9,7 @@ interface StatsCardProps {
 }
 function StatsCard({ title, value, previousValue, change, icon }: StatsCardProps) {
   return (
-    <div className='border-padded'>
+    <div className='border-padded w-full'>
       <h3 className='font-semibold'>{title}</h3>
       <div className=" mt-4  flex justify-between  ">
         <div className="">

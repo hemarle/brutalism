@@ -22,7 +22,7 @@ export default function UserDropdown({ user }: UserDropdownProps) {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        className="flex items-center space-x-2 p-2 cursor-pointer  rounded-lg hover:bg-gray-100 transition-colors"
       >
         <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-300">
           {user.avatar ? (

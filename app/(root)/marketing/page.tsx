@@ -25,7 +25,7 @@ function Marketing() {
 </div>
 
       </div>
-<div className="mt-4 grid grid-cols-1 lg:grid-cols-4 gap-4">
+<div className="mt-4 flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
   <StatsCard
     title="Total Spend"
     value="$12,000"
@@ -57,7 +57,7 @@ function Marketing() {
   />
 
   {/* This div spans cols 3–4 and rows 1–2 */}
-  <div className="lg:col-start-3 lg:col-span-2 lg:row-start-1 lg:row-span-2 ">
+  <div className=" col-span-2 lg:col-start-3 lg:col-span-2 lg:row-start-1 lg:row-span-2 ">
    <AcquisitionChart/>
    </div>
 
