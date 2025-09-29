@@ -66,7 +66,7 @@ export async function getEmails(filter: FilterOptions): Promise<EmailApiResponse
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/hemarle/brutalism.git
 cd habari
 
 # Install dependencies
