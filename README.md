@@ -79,7 +79,7 @@ pnpm run dev
 pnpm run build
 
 # Start production server
-npm start
+pnpm start
 ```
 
 ### Environment Setup
@@ -125,33 +125,13 @@ habari/
 
 ## 🎯 Performance Optimizations
 
-### 1. React Re-render Prevention
-**Problem**: Email component was re-rendering 8 times, calling API unnecessarily
-**Solutions**:
-```typescript
-// Function-based state initialization
-const [filter, setFilter] = useState(() => ({
-  page: 1, limit: 15, view: 'inbox', label: '', search: ''
-}));
-
-// Conditional state updates to prevent unnecessary re-renders
-setFilter(prev => {
-  if (prev.search === debouncedSearchTerm) return prev;
-  return { ...prev, search: debouncedSearchTerm };
-});
-
-// Stable dependencies with destructuring
-const { page, limit, view, label, search } = filter;
-useEffect(() => { /* fetch data */ }, [page, limit, view, label, search]);
-```
-
-### 2. Debounced Search
+### 1. Debounced Search
 **Implementation**: 1000ms delay prevents excessive API calls
 ```typescript
 const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 ```
 
-### 3. Optimized Mobile Layouts
+### 2. Optimized Mobile Layouts
 - **Conditional rendering** instead of CSS-only responsive design
 - **Separate mobile components** for better performance
 - **Drawer patterns** for mobile navigation
@@ -260,4 +240,4 @@ The marketing dashboard includes:
 - **Acquisition Costs**: Customer acquisition metrics
 - **Revenue Tracking**: Performance indicators and trends
 
-Built with ❤️ using Next.js 15 and modern web technologies.
+
