@@ -16,12 +16,17 @@ if(!user) return null;
       {/* Left: Search - Hidden on mobile, shown on desktop */}
       <div className="hidden md:flex items-center w-full max-w-sm">
         <div className="relative w-full">
+          <label htmlFor="global-search" className="sr-only">
+            Search
+          </label>
           <input
+            id="global-search"
             type="text"
             placeholder="Search..."
             className="w-full rounded-md border border-gray-300 pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            aria-label="Search"
           />
-          <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
+          <span className="absolute left-3 top-2.5 text-gray-400" aria-hidden="true">🔍</span>
         </div>
       </div>
 
@@ -33,22 +38,37 @@ if(!user) return null;
       {/* Right: Icons - Responsive */}
       <div className="flex items-center space-x-2 md:space-x-4 ml-4">
         {/* Settings - Hidden on mobile */}
-        <button className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100">
-          <span className="text-gray-600">⚙️</span>
+        <button 
+          className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          aria-label="Settings"
+        >
+          <span className="text-gray-600" aria-hidden="true">⚙️</span>
         </button>
 
         {/* Mail with badge */}
-        <button className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full hover:bg-gray-100">
-          <span className="text-gray-600 text-sm md:text-base">✉️</span>
-          <span className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">
+        <button 
+          className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          aria-label="Mail (4 unread messages)"
+        >
+          <span className="text-gray-600 text-sm md:text-base" aria-hidden="true">✉️</span>
+          <span 
+            className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center"
+            aria-hidden="true"
+          >
             <span className="text-[10px] md:text-xs">4</span>
           </span>
         </button>
 
         {/* Notifications with badge */}
-        <button className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full hover:bg-gray-100">
-          <span className="text-gray-600 text-sm md:text-base">🔔</span>
-          <span className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">
+        <button 
+          className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          aria-label="Notifications (1 unread notification)"
+        >
+          <span className="text-gray-600 text-sm md:text-base" aria-hidden="true">🔔</span>
+          <span 
+            className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center"
+            aria-hidden="true"
+          >
             <span className="text-[10px] md:text-xs">1</span>
           </span>
         </button>

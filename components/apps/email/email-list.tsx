@@ -133,13 +133,7 @@ function EmailList() {
     fetchData()
   }, [page, limit, view, label, search])
 
-  if (isLoading) {
-    return (
-      <div className="w-full flex items-center justify-center py-8">
-        <div className="text-gray-500">Loading emails...</div>
-      </div>
-    )
-  }
+ 
 
   if (emailResponse?.data.length === 0) {
     return (
@@ -211,12 +205,17 @@ function EmailList() {
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
-        <div className="flex items-center">
+        <div className="flex  items-center">
           <input type="checkbox" name="" id="" className="cursor-pointer" />
           <span className="ml-2 text-sm text-gray-600 hidden sm:inline">
             Select all
           </span>
         </div>
+
+{/* Loading emails */}
+{isLoading ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-500"></div>
+           ) : null}
 
         {/* Pagination */}
         <div className="flex flex-col sm:flex-row items-center gap-4">

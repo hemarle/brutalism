@@ -8,21 +8,22 @@ function Email() {
       {/* Mobile Layout */}
       <div className="block md:hidden">
         <MobileEmailLayout>
-            <Suspense fallback={<div>Loading...</div>}>
-          <EmailList/>
-           </Suspense> </MobileEmailLayout>
+          <Suspense fallback={<div aria-live="polite">Loading emails...</div>}>
+            <EmailList/>
+          </Suspense> 
+        </MobileEmailLayout>
       </div>
 
       {/* Desktop Layout */}
       <div className='hidden md:flex border-padded space-x-8 bg-white'>
-        <div className="w-44 flex-shrink-0">
+        <aside className="w-44 flex-shrink-0" aria-label="Email navigation">
           <Sidebar/>
-        </div>
-        <div className="flex-1 min-w-0">
-           <Suspense fallback={<div>Loading...</div>}>
-          <EmailList/>
-           </Suspense>
-        </div>
+        </aside>
+        <main className="flex-1 min-w-0" role="main" aria-label="Email list">
+          <Suspense fallback={<div aria-live="polite">Loading emails...</div>}>
+            <EmailList/>
+          </Suspense>
+        </main>
       </div>
     </>
   )

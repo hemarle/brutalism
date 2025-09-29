@@ -1,4 +1,4 @@
-// "use server";
+"use server";
 
 import { authenticatedFetch } from '@/lib/auth-utils';
 

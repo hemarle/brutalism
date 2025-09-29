@@ -2,69 +2,45 @@
 // import BudgetByPlatform from "@/components/BudgetByPlatform"
 import AcquisitionChart from "@/components/marketing/acquisition-cost"
 import BudgetByPlatform from "@/components/marketing/budget-platform"
-import StatsCard from "@/components/marketing/stats-card"
+import StatsCardContainer from "@/components/marketing/statistics"
 import TimelineTab from "@/components/marketing/timeline-tab"
 import TrafficSource from "@/components/marketing/traffic-source"
-import {
-  Users,
-  Banknote,
-  CircleDollarSign,
-  Check,
-} from "lucide-react"
+import { TimelineProvider } from "@/contexts/TimelineContext"
 
 function Marketing() {
   return (
-    <div className="" >
-      <div className="flex items-center justify-between ">
-<h3>Marketing</h3>
-<div className="">
-    <TimelineTab/>
-</div>
+    <TimelineProvider>
+      <div className="">
+        <div className="flex flex-wrap gap-4 items-center justify-between">
+          <h1 className="text-sm md:text-2xl font-bold text-gray-900">Marketing Dashboard</h1>
+          <div className="">
+            <TimelineTab/>
+          </div>
+        </div>
+        
+        <section id="dashboard-content" className="mt-4" aria-labelledby="stats-heading">
+          <h2 id="stats-heading" className="sr-only">Marketing Statistics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
+            <div className="">
 
+            <StatsCardContainer />
+            </div>
+
+            <div className="">
+              <AcquisitionChart/>
+            </div>
+
+            <div className="">
+              <TrafficSource/>
+            </div>
+
+            <div className="">
+              <BudgetByPlatform/>
+            </div>
+          </div>
+        </section>
       </div>
-<div className="mt-4 flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-  <StatsCard
-    title="Total Spend"
-    value="$12,000"
-    previousValue="$10,000"
-    change={2000}
-    icon={<Banknote color="#7cda31" size={24} /> }
-    />
-  <StatsCard
-    title="Visitor"
-    value="1,200"
-    previousValue="1,000"
-    change={200}
-    icon={<Users color="#7cda31" size={24} />}
-    />
- 
-  <StatsCard
-    title="Acquisition"
-    value="2.5%"
-    previousValue="2.0%"
-    change={0.5}
-    icon={<Check color="#7cda31" className="rounded-full border-2 stroke-2 border-green-500" size={24} />}
-    />
-  <StatsCard
-    title="Revenue"
-    value="95%"
-    previousValue="90%"
-    change={-5}
-    icon={<CircleDollarSign color="#7cda31" size={24} />}
-  />
-
-  {/* This div spans cols 3–4 and rows 1–2 */}
-  <div className=" col-span-2 lg:col-start-3 lg:col-span-2 lg:row-start-1 lg:row-span-2 ">
-   <AcquisitionChart/>
-   </div>
-
-  <div className="col-span-2">
-<TrafficSource/>
-  </div>
-
-<div className="col-span-2"><BudgetByPlatform/></div>
-</div>
-    </div>
+    </TimelineProvider>
   )
 }
 
