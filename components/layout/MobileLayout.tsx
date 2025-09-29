@@ -29,13 +29,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           <Menu size={24} className="text-gray-600" />
         </button>
 
-        {/* Logo */}
-        {/* <div className="flex items-center gap-1 font-bold text-lg">
-          <div className="w-6 h-6 bg-green-600 rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm">B</span>
-          </div>
-          <span className="font-semibold text-gray-900">rutalism</span>
-        </div> */}
+        
 
         {/* Search Icon (simplified for mobile) */}
         <button className="p-2 rounded-md hover:bg-gray-100 transition-colors">
@@ -64,12 +58,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          {/* <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-lg">B</span>
-            </div>
-            <span className="font-semibold text-gray-900 text-xl">rutalism</span>
-          </div> */}
+        
           <button
             onClick={() => setIsSidebarOpen(false)}
             className="p-2 rounded-md hover:bg-gray-100 transition-colors"

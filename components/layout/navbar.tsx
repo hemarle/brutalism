@@ -12,7 +12,7 @@ useEffect(()=>{
 },[])
 if(!user) return null;
   return (
-    <header className="w-full border-b border-gray-200 px-4 py-2 flex items-center justify-between shadow-sm">
+    <header className="w-full border-b border-gray-200 px-4 py-2 flex flex-row-reverse md:flex-row items-center justify-between shadow-sm">
       {/* Left: Search - Hidden on mobile, shown on desktop */}
       <div className="hidden md:flex items-center w-full max-w-sm">
         <div className="relative w-full">
