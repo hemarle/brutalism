@@ -1,6 +1,5 @@
 'use client'
 import {
-  Email,
   EmailApiResponse,
   getEmails,
   ViewFilter,
@@ -30,13 +29,14 @@ function EmailList() {
   // Track if search is being debounced
   const isSearching = searchTerm !== debouncedSearchTerm
 
-  const [filter, setFilter] = React.useState({
+  // Initialize filter state without causing re-renders
+  const [filter, setFilter] = React.useState(() => ({
     page: 1,
     limit: 15,
-    view: (searchParams.get('view') as ViewFilter) || 'inbox',
+    view: (searchParams.get('view') as ViewFilter) ,
     label: searchParams.get('label') || '',
     search: '',
-  })
+  }))
 
   // Handle search input change
   const handleSearchChange = useCallback(
@@ -53,54 +53,70 @@ function EmailList() {
 
   // Update filter when debounced search term changes
   useEffect(() => {
-    setFilter((prev) => ({
-      ...prev,
-      search: debouncedSearchTerm,
-      page: 1, // Reset to first page when searching
-    }))
+    setFilter((prev) => {
+      // Only update if search term actually changed
+      if (prev.search === debouncedSearchTerm) {
+        return prev // Return same object to prevent re-render
+      }
+
+      return {
+        ...prev,
+        search: debouncedSearchTerm,
+        page: 1, // Reset to first page when searching
+      }
+    })
   }, [debouncedSearchTerm])
 
-  const paginateNext = () => {
+  const paginateNext = useCallback(() => {
     if (filter.page < (emailResponse?.pagination.totalPages || 1)) {
       setFilter((prev) => ({
         ...prev,
         page: (prev.page || 1) + 1,
       }))
     }
-  }
-  const paginatePrev = () => {
+  }, [filter.page, emailResponse?.pagination.totalPages])
+
+  const paginatePrev = useCallback(() => {
     if (filter.page > 1) {
       setFilter((prev) => ({
         ...prev,
         page: (prev.page || 1) - 1,
       }))
     }
-  }
+  }, [filter.page])
 
   // Update filter when URL params change (but preserve page for pagination)
   useEffect(() => {
     const searchView = searchParams.get('view') as ViewFilter
     const searchLabel = searchParams.get('label')
 
-    setFilter((prev) => ({
-      ...prev,
-      view: searchView || 'inbox',
-      label: searchLabel || '',
-      // Only reset page if view or label actually changed
-      page:
-        (searchView && searchView !== prev.view) ||
-        (searchLabel && searchLabel !== prev.label)
-          ? 1
-          : prev.page,
-    }))
+    setFilter((prev) => {
+      const newView = searchView 
+      const newLabel = searchLabel || ''
+      
+      // Only update if values actually changed
+      if (prev.view === newView && prev.label === newLabel) {
+        return prev // Return same object to prevent re-render
+      }
+
+      return {
+        ...prev,
+        view: newView,
+        label: newLabel,
+        page: 1, // Reset to first page when view/label changes
+      }
+    })
   }, [searchParams])
 
-  // Fetch emails when filter changes
+  // Destructure filter values to use as dependencies
+  const { page, limit, view, label, search } = filter
+
+  // Fetch emails when filter changes - only when actual values change
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const data = await getEmails(filter)
+        const data = await getEmails({ page, limit, view, label, search })
         setEmailResponse(data)
       } catch (error) {
         console.error('Failed to fetch emails:', error)
@@ -115,7 +131,7 @@ function EmailList() {
     }
 
     fetchData()
-  }, [filter])
+  }, [page, limit, view, label, search])
 
   if (isLoading) {
     return (
@@ -153,7 +169,7 @@ function EmailList() {
           </h3>
           {searchTerm && (
             <p className="text-sm text-gray-500">
-              Showing results for &ldquo;{searchTerm}&rdquo;
+              Showing results for {searchTerm};
               {emailResponse?.pagination.total &&
                 ` (${emailResponse.pagination.total} found)`}
             </p>

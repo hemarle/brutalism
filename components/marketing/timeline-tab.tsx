@@ -5,10 +5,10 @@ import { Button } from '../ui/button'
 function TimelineTab() {
 
   return (
-    <div className='border  flex'>
-      <Button className='px-4 py-2 text-green-700'>7 Days</Button>
-      <Button className='border-l border-r rounded-none px-4 py-2'>14 Days</Button>
-      <Button className='px-4 py-2'>1 Month</Button>
+    <div className='border-2 rounded flex font-semibold'>
+      <Button size='sm' className='cursor-pointer px-4 py-1 text-green-700 shadow-lg'>7 Days</Button>
+      <Button size='sm' className='cursor-pointer border-l-2 border-r-2 rounded-none px-4 py-2'>14 Days</Button>
+      <Button size='sm' className='cursor-pointer px-4 py-1'>1 Month</Button>
     </div>
   )
 }

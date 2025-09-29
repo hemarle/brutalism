@@ -68,7 +68,8 @@ export async function getEmails(filter: FilterOptions): Promise<EmailApiResponse
 
     const response = await authenticatedFetch(url, {
       method: 'GET',
-      cache: 'no-store', // Ensure fresh data on each request
+      cache: 'force-cache',
+     next: { revalidate: 60 }
     });
 
     if (!response.ok) {

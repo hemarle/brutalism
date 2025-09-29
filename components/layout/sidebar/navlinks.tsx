@@ -14,6 +14,7 @@ import {
   User,
   ChevronDown,
   ChevronUp,
+  Clapperboard,
 } from "lucide-react"
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -58,7 +59,7 @@ const menuItems = [
     ],
   },
   {
-    icon: User,
+    icon: Clapperboard,
     label: "Apps",
     hasSubmenu: true,
     href: "/apps",
